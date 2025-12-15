@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../context/LoginContext";
 import { useCart } from "../../context/cardContext";
+import { FaShopify } from "react-icons/fa6";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -28,9 +29,10 @@ export const Navbar = () => {
     <header className="flex py-4 px-6 text-slate-300 bg-rose-800">
       <h1
         onClick={() => navigate("/")}
-        className="text-4xl hover:cursor-pointer"
+        className="font-sans font-semibold italic flex text-4xl hover:cursor-pointer "
       >
-        Shop-it
+        <FaShopify className="size-10" />
+        hopzi...
       </h1>
 
       <nav className="ml-auto flex gap-8">
@@ -41,7 +43,7 @@ export const Navbar = () => {
         >
           shopping_cart
           {cart.length > 0 && (
-            <span className="absolute -top-1 -right-2 border-rose-400 border bg-rose-50 text-rose-400 text-xs font-semibold h-4 w-4 flex items-center justify-center rounded-full">
+            <span className="absolute -top-1 -right-2 border-rose-500 border bg-rose-50 text-rose-500 text-sm font-semibold h-4 w-4 flex items-center justify-center rounded-full">
               {cart.length}
             </span>
           )}
@@ -54,7 +56,7 @@ export const Navbar = () => {
         >
           favorite
           {favorite.length > 0 && (
-            <span className="absolute -top-1 -right-2 border-rose-400 border bg-rose-50 text-rose-400 text-xs font-semibold h-4 w-4 flex items-center justify-center rounded-full">
+            <span className="absolute -top-1 -right-2 border-rose-500 border bg-rose-50 text-rose-500 text-sm font-semibold h-4 w-4 flex items-center justify-center rounded-full">
               {favorite.length}
             </span>
           )}

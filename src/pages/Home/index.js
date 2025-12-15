@@ -38,7 +38,7 @@ export const Home = () => {
             categories.map((categorie) => (
               <div
                 onClick={() => onCategoriClick(categorie.name)}
-                className="flex p-2 bg-rose-300  rounded-md hover:cursor-pointer text-black font-semibold"
+                className="flex p-2 bg-rose-100  rounded-md cursor-pointer text-rose-600 border border-rose-400 font-bold hover:bg-rose-200"
               >
                 {categorie.name}
               </div>

@@ -75,7 +75,7 @@ export const Cards = ({ product }) => {
         <div className="cta-btn">
           <button
             onClick={onCartClick}
-            className="button btn-icon bg-rose-600 cart-btn d-flex align-center justify-center gap cursor btn-margin text-slate-50"
+            className="button btn-icon  bg-rose-100 cart-btn d-flex align-center justify-center gap cursor btn-margin text-rose-500 font-bold"
           >
             <span className="material-symbols-outlined text-3xl">
               {isProductInCart ? "shopping_cart_checkout" : "shopping_cart"}
@@ -85,7 +85,7 @@ export const Cards = ({ product }) => {
 
           <button
             onClick={onWishlistClick}
-            className="button btn-icon bg-rose-600 cart-btn d-flex align-center justify-center gap cursor btn-margin text-slate-50"
+            className="border  border-rose-500 button btn-icon bg-rose-100 cart-btn d-flex align-center justify-center gap cursor btn-margin text-rose-500 font-bold"
           >
             <span className="material-symbols-outlined text-3xl">favorite</span>
             {isProductInWishlist ? "Go To Wishlist" : "Add To Wishlist"}
