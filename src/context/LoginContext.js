@@ -4,7 +4,15 @@ import { loginReducer, loginInitialState } from "../reducer/loginReducer";
 const LoginContext = createContext();
 
 const LoginProvider = ({ children }) => {
-  const [state, LoginDispatch] = useReducer(loginReducer, loginInitialState);
+  // ✅ hydrate token from localStorage
+  const persistedToken = localStorage.getItem("token");
+
+  const initialState = {
+    ...loginInitialState,
+    token: persistedToken || "",
+  };
+
+  const [state, LoginDispatch] = useReducer(loginReducer, initialState);
 
   return (
     <LoginContext.Provider value={{ ...state, LoginDispatch }}>

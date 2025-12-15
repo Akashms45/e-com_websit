@@ -1,7 +1,7 @@
 export const loginInitialState = {
   email: "",
   password: "",
-  token: "",
+  token: localStorage.getItem("token") || "",
 };
 
 export const loginReducer = (state, { type, payload }) => {
@@ -21,15 +21,22 @@ export const loginReducer = (state, { type, payload }) => {
     case "TOKEN":
       return {
         ...state,
-        token: payload.token,
+        token: payload.token, // string
         password: "",
       };
 
     case "RESET":
-      return loginInitialState;
+      return {
+        ...loginInitialState,
+        token: state.token, // keep token on reset
+      };
 
     case "LOGOUT":
-      return loginInitialState;
+      return {
+        email: "",
+        password: "",
+        token: "",
+      };
 
     default:
       return state;

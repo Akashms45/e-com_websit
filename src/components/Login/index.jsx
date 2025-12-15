@@ -7,11 +7,11 @@ export const Login = () => {
   const { LoginDispatch, email, password } = useLogin();
   const navigate = useNavigate();
 
-  const [error, setError] = useState(""); // ✅ popup message
+  const [error, setError] = useState("");
 
   useEffect(() => {
     LoginDispatch({ type: "RESET" });
-    setError(""); // clear error on load
+    setError("");
   }, [LoginDispatch]);
 
   const onFormSubmit = async (e) => {
@@ -21,6 +21,10 @@ export const Login = () => {
     try {
       const data = await userLogin(email, password);
 
+      // ✅ store auth + user identity
+      localStorage.setItem("token", data.access_token);
+      localStorage.setItem("currentUser", email);
+
       LoginDispatch({
         type: "TOKEN",
         payload: { token: data.access_token },
@@ -28,7 +32,6 @@ export const Login = () => {
 
       navigate("/");
     } catch (err) {
-      // ✅ handle unauthorized
       if (err.response?.status === 401) {
         setError("Invalid email or password");
       } else {
@@ -38,7 +41,7 @@ export const Login = () => {
   };
 
   const onEmailChange = (e) => {
-    setError(""); // clear popup while typing
+    setError("");
     LoginDispatch({
       type: "EMAIL",
       payload: { value: e.target.value },
@@ -46,7 +49,7 @@ export const Login = () => {
   };
 
   const onPasswordChange = (e) => {
-    setError(""); // clear popup while typing
+    setError("");
     LoginDispatch({
       type: "PASSWORD",
       payload: { value: e.target.value },
@@ -60,7 +63,6 @@ export const Login = () => {
     >
       <h1 className="font-bold text-slate-900 p-4 text-2xl">Login</h1>
 
-      {/* ✅ ERROR POPUP */}
       {error && (
         <div className="bg-red-100 text-red-700 p-2 mx-4 rounded text-center">
           {error}
